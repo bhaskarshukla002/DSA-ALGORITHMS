@@ -11,9 +11,10 @@ class Solution {
         for(int i:nums){
             if(!hs.contains(i-1)){
                 int curr=1;
-                int t=i+1;
-                while(hs.contains(t++)){
-                    curr++;
+                int t=i;
+                while(hs.contains(t+1)){
+                    t=t+1;
+                    curr=curr+1;
                 }
                 ans=Math.max(ans,curr);
             }
