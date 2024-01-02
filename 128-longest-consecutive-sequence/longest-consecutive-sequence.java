@@ -3,10 +3,10 @@ class Solution {
         int n = nums.length;
         if (n == 0)
             return 0;
-        HashSet<Integer> hs=new HashSet<>();
+        Set<Integer> hs=new HashSet<>();
         int ans=1;
-        for(int i:nums){
-            hs.add(i);
+        for(int i=0;i<n;i++){
+            hs.add(nums[i]);
         }
         for(int i:nums){
             if(!hs.contains(i-1)){
