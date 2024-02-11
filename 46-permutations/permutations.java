@@ -1,28 +1,32 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<Integer> num=new ArrayList<Integer>();
-        // int len=nums.length;
-        for(int i=0;i<nums.length;i++){
-            num.add(nums[i]);
-        }
         List<List<Integer>> ans=new ArrayList<>();
-        permute(num,ans,0);
+        // Arrays.sort(nums);
+        List<Integer> arr=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            arr.add(nums[i]);
+        }
+        helper(0,ans,arr);
         return ans;
     }
-    public void permute(List<Integer> nums,List<List<Integer>> ans,int l){
-        if(l==nums.size()-1){
-        ans.add(new ArrayList<>(nums));
-        return;}
+    void helper(int start,List<List<Integer>> ans,List<Integer> nums){
+        if(start==nums.size()-1){
+            // List<Integer> temp=new ArrayList<>(List.of(nums));
+            ans.add(new ArrayList<>(nums));
+            return;
+            }
         else
-        for(int i=l;i<nums.size();i++){
-            swap(nums,i,l);
-            permute(nums,ans,l+1);
-            swap(nums,i,l);
+        for(int i=start;i<nums.size();i++){
+            // curr.add(nums[i]);
+            swap(nums,start,i);
+            helper(start+1,ans,nums);
+            // curr.remove(curr.size()-1);
+            swap(nums,start,i);
         }
     }
-    void swap(List<Integer> nums,int i,int j){
-        int temp=nums.get(i);
-        nums.set(i,nums.get(j));
-        nums.set(j,temp);
-    }
+    void swap(List<Integer> arr,int i,int j){
+        int temp=arr.get(i);
+        arr.set(i,arr.get(j));
+        arr.set(j,temp);
+    } 
 }
