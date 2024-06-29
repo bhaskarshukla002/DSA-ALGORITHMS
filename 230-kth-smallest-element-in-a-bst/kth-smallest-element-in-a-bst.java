@@ -22,9 +22,10 @@ class Solution {
         }
         kthSmallest(root.left,k);
         count++;
-        if(count==k)
+        if(count==k){
         ans=root.val;
-        // return ans;
+        return ans;
+        }
         kthSmallest(root.right,k);
         return ans;
     }
