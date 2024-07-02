@@ -14,24 +14,27 @@
  * }
  */
 class Solution {
-    TreeNode prev;
+    // TreeNode prev;
     public void flatten(TreeNode root) {
-        // TreeNode prev=null;
-        // while(root!=null){
-        //     if(root.left==null){
-                
-        //     }else{
-
-        //         root=root.left;
-        //     }
+        // if(root==null){
+        //     return;
         // }
-        if(root==null){
-            return;
+        // flatten(root.right);
+        // flatten(root.left);
+        // root.right=prev;
+        // root.left=null;
+        // prev=root;
+        
+        while(root!=null){
+            if(root.left!=null){
+                TreeNode curr=root.left;
+                while(curr.right!=null)
+                curr=curr.right;
+                curr.right=root.right;
+                root.right=root.left;
+                root.left=null;
+            }
+            root=root.right;
         }
-        flatten(root.right);
-        flatten(root.left);
-        root.right=prev;
-        root.left=null;
-        prev=root;
     }
 }
