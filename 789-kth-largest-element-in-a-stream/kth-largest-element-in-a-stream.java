@@ -27,7 +27,7 @@ class KthLargest {
         int rightCount=0;
         if(node.right!=null) rightCount=node.right.count;
         if(rightCount==n-1) return node.value;
-        if(rightCount<n-1){
+        if(rightCount<n){
             return findNthLargest(node.left,n-rightCount-1);
         } else{
             return findNthLargest(node.right,n);
