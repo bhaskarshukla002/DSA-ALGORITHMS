@@ -62,26 +62,22 @@ class Solution
     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
         // Write your code here
-        int[] dis=new int[V];
-        int[] parent=new int[V];
+        int dis[]=new int[V];
         PriorityQueue<int[]> pq=new PriorityQueue<>((a,b)->(a[1]-b[1]));
-        for(int i=0;i<V;i++){
-            dis[i]=(int)1e9;
-            parent[i]=1;
-        }
+        for(int i=0;i<V;i++)
+            dis[i]=Integer.MAX_VALUE;
         dis[S]=0;
         pq.add(new int[]{S,0});
         while(!pq.isEmpty()){
-            int[] tem=pq.poll();
-            int u=tem[0];
-            int pDis=tem[1];
-            for(List<Integer> it:adj.get(u)){
-                int v=it.get(0);
-                int vWeight=it.get(1);
-                if(pDis+vWeight<dis[v]){
-                    dis[v]=pDis+vWeight;
-                    pq.add(new int[]{v,pDis+vWeight});
-                    parent[v]=u;
+            int node=pq.peek()[0];
+            int d=pq.peek()[1];
+            pq.remove();
+            for(int i=0;i<adj.get(node).size();i++){
+                int v=adj.get(node).get(i).get(0);
+                int w=adj.get(node).get(i).get(1);
+                if(d+w<dis[v]){
+                    dis[v]=d+w;
+                    pq.add(new int[]{v,dis[v]});
                 }
             }
         }
